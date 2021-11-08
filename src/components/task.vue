@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div class="hello">
       <el-row>
@@ -17,4 +18,25 @@ export default {
 
 <style>
 
+=======
+<template>
+  <div class="hello">
+      <el-row>
+        <TaskBox :job_status="0" />
+      </el-row>
+    </div>
+</template>
+
+<script>
+import TaskBox from "./taskBox.vue";
+
+export default {
+    name: "Task",
+    components: {TaskBox},
+}
+</script>
+
+<style>
+
+>>>>>>> origin/master
 </style>
