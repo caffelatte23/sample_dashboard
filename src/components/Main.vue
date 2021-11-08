@@ -12,6 +12,9 @@
           <router-link to="/app/calender">
             <el-menu-item index="calender">Calender</el-menu-item>
           </router-link>
+          <router-link to="/app/task">
+            <el-menu-item index="task">Task</el-menu-item>
+          </router-link>
         </el-menu>
       </el-aside>
       <el-main>
@@ -22,7 +25,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Main',

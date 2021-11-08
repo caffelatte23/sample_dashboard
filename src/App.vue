@@ -20,6 +20,7 @@ export default {
     onMounted(()=>{
       let name = (store.state.userId === '') ? 'login': 'main'
       router.push({name: name})
+      store.dispatch('getData');
     })
 
     return {
