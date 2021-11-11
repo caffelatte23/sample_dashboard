@@ -1,7 +1,7 @@
 <template>
    <el-calendar v-model="value" style="width: 80%">
        <template #dateCell="{data}">
-           <div  style="height: 100%" @click="test(data.day)">
+           <div  style="height: 100%" @click="openDialog(null)">
             <span :class="schedule[data.day] ? 'date-valid' : 'date-non'">{{parseInt(data.day.slice(-2))}}</span>
             <div v-if="schedule[data.day]">
                 <div v-for="(item, index) in schedule[data.day]" :key="item">
@@ -42,8 +42,11 @@ export default {
         }
         const openDialog = (data, date, index)=>{
             dialogVisible.value = true
-            schedule_id.value = { date: date, id: index }
-            dialog_setting.value = data
+            if(data !== null){
+                schedule_id.value = { date: date, id: index }
+                dialog_setting.value = data
+            }
+            
         }
         const getSchedule = (date, index)=>{
             return store.getters.schedulesTitle(date, index)

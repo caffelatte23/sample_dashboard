@@ -13,11 +13,100 @@ let state = {
             desc: "sample text"
         }]
     },
+    taskData: [
+        {
+            id: 1,
+            content: "テスト1",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 0
+        },
+        {
+            id: 2,
+            content: "テスト2",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 3,
+            content: "テスト3",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 3
+        },
+        {
+            id: 4,
+            content: "テスト1",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 5,
+            content: "テスト2",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 6,
+            content: "テスト3",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 7,
+            content: "テスト1",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 8,
+            content: "テスト2",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 9,
+            content: "テスト3",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 10,
+            content: "テスト1",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 11,
+            content: "テスト2",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+        {
+            id: 12,
+            content: "テスト3",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 1
+        },
+    ],
     MonitorData: []
 }
 let mutations = {
     setShedules(state, obj){
         state.schedules = obj.schedules
+    },
+    setTaskData(state, obj){
+        state.taskData = obj.TaskData
     }
 }
 let getters = {

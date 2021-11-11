@@ -4,12 +4,14 @@
             <span style="text-align: left"><strong>{{status[index]}} : {{data[index].length}}</strong></span>    
             <el-card class="jobcard">
                 <el-button v-if="index === 0" type="text" @click="AddJob">課題を追加</el-button>
-                <el-scrollbar max-height="500px">
-                <draggable v-model="data[index]" :style="index === 0 ? 'margin-top: 10px' : 'margin-top: 50px'" :itemKey="id" group="people" handle=".handle">
+                <el-scrollbar max-height="500px;">
+                <draggable v-model="data[index]" :style="index === 0 ? 'margin-top: 10px; height: 480px' : 'margin-top: 50px; height: 480px'" item-key="id" group="items" handle=".handle" @add="test">
                     <template #item="{element}">
                         <div class="drag-item" style="margin: 5px">
                             <el-card class="handle" >
-                                <span >{{ element.id }}</span>
+                                <span style="float: left">{{ element.id }}</span>
+                                <p>{{element.content}}</p>
+                                <p style="float: right">{{element.manager}}</p>
                             </el-card>
                         </div>
                     </template>
@@ -26,85 +28,44 @@ import draggable from "vuedraggable"
 
 export default {
     name: 'TaskBox',
-    props: ["job_status"],
+    props: ["task"],
+    emits: ['taskUpdated'],
     components: {draggable},
-    setup(props){
+    setup(props, context){
         const status = ref([
             '未対応',
             '処理中',
             '処理済み',
             '完了'
         ])
-        let data = ref([
-            [
-                {
-                    id: 1,
-                    content: "テスト1",
-                },
-                {
-                    id: 2,
-                    content: "テスト2",
-                },
-                {
-                    id: 3,
-                    content: "テスト3",
-                },
-            ],
-            [
-                {
-                    id: 4,
-                    content: "テスト1",
-                },
-                {
-                    id: 5,
-                    content: "テスト2",
-                },
-                {
-                    id: 6,
-                    content: "テスト3",
-                },
-            ],
-            [
-                {
-                    id: 7,
-                    content: "テスト1",
-                },
-                {
-                    id: 8,
-                    content: "テスト2",
-                },
-                {
-                    id: 9,
-                    content: "テスト3",
-                },
-            ],
-            [
-                {
-                    id: 10,
-                    content: "テスト1",
-                },
-                {
-                    id: 11,
-                    content: "テスト2",
-                },
-                {
-                    id: 12,
-                    content: "テスト3",
-                },
-            ],
-        ])
+        let data = ref(props.task)
 
         const AddJob = ()=>{
             data.value[0].push({
                 id: 13,
                 content: "テスト3",
             })
-            console.log(data.value)
+        }
+
+        const test = (event)=>{
+            let newData = []
+            for( let i = 0; i < data.value.length; i++){
+                for(let j = 0; j < data.value[i].length; j++){
+                    data.value[i][j].status = i;
+                    newData.push(data.value[i][j])
+                }
+            }
+            newData.sort((a,b)=>{
+                if(a.id < b.id){ return -1;}
+                if(a.id > b.id){ return 1;}
+            })
+            context.emit('taskUpdated', newData)
         }
         return {
             data,
             status,
-            AddJob
+            AddJob,
+            test
         }
     }
 

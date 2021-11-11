@@ -4,6 +4,7 @@ import Main from './components/Main.vue'
 import Graph from './components/Graph.vue'
 import Calender from './components/Calender.vue'
 import Task from './components/task.vue'
+import Backlog from './components/backlog.vue'
 
 export const router = createRouter({
     history: createWebHistory(),
@@ -32,6 +33,11 @@ export const router = createRouter({
                     path: '/app/task',
                     component: Task,
                     name: 'task'
+                },
+                {
+                    path: '/app/backlog',
+                    component: Backlog,
+                    name: 'backlog'
                 },
             ]
         }, 
