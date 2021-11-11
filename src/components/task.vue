@@ -17,13 +17,11 @@ export default {
     setup(){
       const store = useStore();
       const taskData = computed(()=>{
-        const data = store.state.taskData;
-
         return [
-          data.filter((el)=>el.status === 0),
-          data.filter((el)=>el.status === 1),
-          data.filter((el)=>el.status === 2),
-          data.filter((el)=>el.status === 3)
+          store.state.taskData.filter((el)=>el.status === 0),
+          store.state.taskData.filter((el)=>el.status === 1),
+          store.state.taskData.filter((el)=>el.status === 2),
+          store.state.taskData.filter((el)=>el.status === 3)
         ]
       })
 

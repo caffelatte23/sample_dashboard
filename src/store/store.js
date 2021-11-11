@@ -13,6 +13,14 @@ let state = {
             desc: "sample text"
         }]
     },
+    schedule_temp: {
+        title: '',
+        range: {
+            start: new Date(),
+            end: new Date()
+        },
+        desc: "sample text"
+    },
     taskData: [
         {
             id: 1,
@@ -102,8 +110,18 @@ let state = {
     MonitorData: []
 }
 let mutations = {
-    setShedules(state, obj){
+    setSchedules(state, obj){
         state.schedules = obj.schedules
+    },
+    AddNewTask(state){
+        state.taskData.push({
+            id: state.taskData.slice(-1)[0].id + 1,
+            content: "テスト3",
+            manager: 'A',
+            line: '2021/09/11',
+            status: 0
+        })
+        console.log(state.taskData)
     },
     setTaskData(state, obj){
         state.taskData = obj.TaskData

@@ -1,13 +1,18 @@
 <template>
   <el-dialog
         v-model="visible"
-        :title="setting.title"
+        :title="(setting.title === '')? '予定を追加' : '予定を編集'"
         width="30%"
         destroy-on-close
         :show-close = "false"
         center
     >
     <el-form>
+      <el-row justify="center">
+        <el-form-item label="タスク名:">
+          <el-input style="width: 220px"  v-model="setting.title" />
+        </el-form-item>
+      </el-row>
       <el-row justify="center">
         <el-form-item label="開始:">
           <el-time-picker  v-model="setting.range.start" />
@@ -27,8 +32,8 @@
     
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="CloseDialog">Cancel</el-button>
-        <el-button type="primary" @click="CloseDialog">Confirm</el-button>
+        <el-button @click="CloseDialog(null)">Cancel</el-button>
+        <el-button type="primary" @click="CloseDialog(setting)">Confirm</el-button>
       </span>
     </template>
   </el-dialog>
@@ -40,11 +45,11 @@ export default {
     props:['setting', 'visible'],
     emits: ['closeDialog'],
     setup(props, context){
-        const CloseDialog = ()=>{
-          context.emit('closeDialog', props.setting)
+        const CloseDialog = (data)=>{
+          context.emit('closeDialog',data)
         }
         return {
-          CloseDialog
+          CloseDialog,
         }
     }
 }

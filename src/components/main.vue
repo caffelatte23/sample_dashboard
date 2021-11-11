@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <el-header>
-      <h1 class="AppTitle">DashBoard</h1>
+      <strong class="AppTitle">DashBoard</strong>
+      <el-button class="userButton" type="primary" icon="el-icon-user" round >user</el-button>
     </el-header>
     <el-container>
       <el-aside width="200px">
@@ -52,9 +53,18 @@ export default {
   }
 
   .AppTitle{
-    margin: 0px;
-    padding: 20px;
-    text-align: left;
+    float: left;
+    font-size: 24px;
+    margin: 2%;
+  }
+
+  .userButton{
+    float: right;
+    text-align: center;
+    margin-top: 2%;
+    font-size: 20px;
+    /* width: 120px; */
+    height: 30px;
   }
 
   .el-aside {

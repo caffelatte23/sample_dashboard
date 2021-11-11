@@ -6,6 +6,8 @@
 
 <script>
 import { nextTick, onMounted } from 'vue'
+import Plotly from 'plotly.js-dist-min'
+
 export default {
     name: 'Graph',
     setup(){

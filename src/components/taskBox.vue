@@ -1,11 +1,11 @@
 <template>
     <div v-for="(val, index) in data" :key="val">
         <div class="job">
-            <span style="text-align: left"><strong>{{status[index]}} : {{data[index].length}}</strong></span>    
+            <span style="text-align: left"><strong>{{status[index]}} : {{val.length}}</strong></span>    
             <el-card class="jobcard">
                 <el-button v-if="index === 0" type="text" @click="AddJob">課題を追加</el-button>
-                <el-scrollbar max-height="500px;">
-                <draggable v-model="data[index]" :style="index === 0 ? 'margin-top: 10px; height: 480px' : 'margin-top: 50px; height: 480px'" item-key="id" group="items" handle=".handle" @add="test">
+                <el-scrollbar max-height="500px" :style="index === 0 ? '' : 'margin-top: 40px;'">
+                <draggable v-model="data[index]" style="margin-top: 10px; height: 480px" item-key="id" group="items" handle=".handle" @add="UpdateTask">
                     <template #item="{element}">
                         <div class="drag-item" style="margin: 5px">
                             <el-card class="handle" >
@@ -25,6 +25,7 @@
 <script>
 import { ref } from 'vue'
 import draggable from "vuedraggable"
+import { useStore } from 'vuex'
 
 export default {
     name: 'TaskBox',
@@ -32,6 +33,7 @@ export default {
     emits: ['taskUpdated'],
     components: {draggable},
     setup(props, context){
+        const store = useStore()
         const status = ref([
             '未対応',
             '処理中',
@@ -42,12 +44,16 @@ export default {
 
         const AddJob = ()=>{
             data.value[0].push({
-                id: 13,
+                id: store.state.taskData.slice(-1)[0].id + 1,
                 content: "テスト3",
+                manager: 'A',
+                line: '2021/09/11',
+                status: 0
             })
+            UpdateTask();
         }
 
-        const test = (event)=>{
+        const UpdateTask = ()=>{
             let newData = []
             for( let i = 0; i < data.value.length; i++){
                 for(let j = 0; j < data.value[i].length; j++){
@@ -65,7 +71,7 @@ export default {
             data,
             status,
             AddJob,
-            test
+            UpdateTask
         }
     }
 
