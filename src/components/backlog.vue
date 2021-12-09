@@ -13,6 +13,7 @@
             <el-table-column prop="id" width="60px" label="id"/>
             <el-table-column prop="content" label="件名"/>
             <el-table-column prop="manager" width="60px" label="担当"/>
+            <el-table-column prop="priority" width="120px" label="優先度">1</el-table-column>
             <el-table-column prop="line" width="120px" label="期限"/>
             <el-table-column prop="status" width="120px" label="状態">
                 <template #default="scope">
@@ -33,7 +34,7 @@ export default {
             status: [
                 {label: '未対応', type: "danger"},
                 {label: '処理中', type: ""},
-                {label: '処理済み', type: "success"},
+                {label: '処理済み', type: "info"},
                 {label: '完了', type: "success"}
             ],
             status_val: [],

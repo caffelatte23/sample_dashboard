@@ -1,17 +1,25 @@
 <template>
   <el-container>
     <el-header>
-      <strong class="AppTitle">DashBoard</strong>
-      <el-button class="userButton" type="primary" icon="el-icon-user" round >user</el-button>
+        <strong class="AppTitle">DashBoard</strong>
+        <el-menu class="topmenu" mode="horizontal" @select="test">
+          <el-menu-item index="1">DashBoard</el-menu-item>
+          <el-menu-item index="2">Projects</el-menu-item>
+          <el-menu-item index="3">Calender</el-menu-item>
+        </el-menu>
+        <!-- <el-button class="userButton" type="primary" icon="el-icon-user" circle /> -->
     </el-header>
     <el-container>
       <el-aside width="200px">
-        <el-menu>
+        <el-menu style="background-color: #d3dce6;">
           <router-link to="/app/graph">
             <el-menu-item index="graph">Graph</el-menu-item>
           </router-link>
           <router-link to="/app/calender">
-            <el-menu-item index="calender">Calender</el-menu-item>
+            <el-menu-item index="calender">
+              <i class="el-icon-date"/>
+                Calender
+            </el-menu-item>
           </router-link>
           <router-link to="/app/task">
             <el-menu-item index="task">Task</el-menu-item>
@@ -49,22 +57,27 @@ export default {
     background-color: #b3c0d1;
     left: 0px;
     right: 0px;
-    height: 90px;
+    height: 60px;
   }
 
   .AppTitle{
     float: left;
     font-size: 24px;
-    margin: 2%;
+    margin: 15px;
   }
 
   .userButton{
+    position: fixed;
     float: right;
     text-align: center;
-    margin-top: 2%;
-    font-size: 20px;
-    /* width: 120px; */
-    height: 30px;
+    font-size: 30px;
+  }
+
+  .topmenu {
+    float: right;
+    background-color: #b3c0d1;
+    height: 60px;
+    width: 400px;
   }
 
   .el-aside {
@@ -73,5 +86,8 @@ export default {
     text-align: center;
     line-height: 200px;
     height: 100vh;
+  }
+  .el-aside a {
+    text-decoration: none;
   }
 </style>

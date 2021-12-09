@@ -21,92 +21,7 @@ let state = {
         },
         desc: "sample text"
     },
-    taskData: [
-        {
-            id: 1,
-            content: "テスト1",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 0
-        },
-        {
-            id: 2,
-            content: "テスト2",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 3,
-            content: "テスト3",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 3
-        },
-        {
-            id: 4,
-            content: "テスト1",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 5,
-            content: "テスト2",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 6,
-            content: "テスト3",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 7,
-            content: "テスト1",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 8,
-            content: "テスト2",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 9,
-            content: "テスト3",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 10,
-            content: "テスト1",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 11,
-            content: "テスト2",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-        {
-            id: 12,
-            content: "テスト3",
-            manager: 'A',
-            line: '2021/09/11',
-            status: 1
-        },
-    ],
+    taskData: [],
     MonitorData: []
 }
 let mutations = {
@@ -133,13 +48,13 @@ let getters = {
     }
 }
 let actions = {
-    getData: async()=>{
-        let params = { date_from: '2021-09-10 12:00', date_to: '2021-09-10 18:00'}
-        axios.post('http://localhost:8000/monitoring', params)
-            .then((res)=>{
-                console.log(res)
-            })
-            .catch(()=>{})
+    getTaskData: async(context)=>{ 
+        const params = {project_id: 0}
+        const res = await axios.get('http://127.0.0.1:8000/task',{params});
+        context.commit({
+            type: "setTaskData",
+            TaskData: res.data
+        })
     }
 }
 

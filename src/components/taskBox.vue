@@ -11,7 +11,10 @@
                             <el-card class="handle" >
                                 <span style="float: left">{{ element.id }}</span>
                                 <p>{{element.content}}</p>
-                                <p style="float: right">{{element.manager}}</p>
+                                <p style="float: right; font-size: 12px">
+                                    <span style="margin-right: 10px">{{element.line}}</span>
+                                    {{element.manager}}
+                                </p>
                             </el-card>
                         </div>
                     </template>

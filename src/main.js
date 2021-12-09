@@ -6,8 +6,7 @@ import 'element-plus/dist/index.css'
 import {store} from './store/store'
 import {router} from './router'
 
-createApp(App)
-.use(ElementPlus)
-.use(store)
-.use(router)
-.mount('#app')
+const app = createApp(App)
+app.use(ElementPlus)
+app.use(store)
+app.use(router).mount('#app')

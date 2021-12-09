@@ -8,9 +8,9 @@
         center
     >
     <el-form>
-      <el-row justify="center">
+      <el-row justify="center" style="margin-right: 30px">
         <el-form-item label="タスク名:">
-          <el-input style="width: 220px"  v-model="setting.title" />
+          <el-input style="width: 220px;"  v-model="setting.title" />
         </el-form-item>
       </el-row>
       <el-row justify="center">
